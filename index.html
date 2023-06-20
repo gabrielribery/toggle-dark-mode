@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dark Mode Toggle oder so</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      transition: background-color 0.1s ease;
+    }
+    
+    .pink-mode {
+      background-color: #ffccff;
+      color: #ff00ff;
+    }
+    
+    .dark-mode {
+      background-color: black;
+      color: white;
+    }
+    
+    .button {
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.1s ease;
+    }
+    
+    .button-pink {
+      background-color: #ff00ff;
+      color: white;
+      display: none;
+    }
+    
+    .button-dark {
+      background-color: #007bff;
+      color: white;
+    }
+    
+    .button:hover {
+      background-color: #0056b3;
+    }
+    
+    .button-pink:hover {
+      background-color: #ff0099;
+    }
+    
+    .message {
+      display: none;
+      color: rgb(255, 0, 191);
+      font-weight: bold;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dark Mode Test</h1>
+  <button id="toggleButtonPink" class="button button-pink">Toggle Pink Mode</button>
+  <button id="toggleButtonDark" class="button button-dark">Toggle Dark Mode</button>
+  <p id="message" class="message"></p>
+
+  <script>
+    const toggleButtonPink = document.getElementById('toggleButtonPink');
+    const toggleButtonDark = document.getElementById('toggleButtonDark');
+    const message = document.getElementById('message');
+    const body = document.body;
+    let darkModeClicks = 0;
+
+    toggleButtonPink.addEventListener('click', function() {
+      body.classList.toggle('pink-mode');
+      body.classList.remove('dark-mode');
+    });
+
+    toggleButtonDark.addEventListener('click', function() {
+      darkModeClicks++;
+      body.classList.toggle('dark-mode');
+      body.classList.remove('pink-mode');
+
+      if (darkModeClicks === 5) {//also nach GENAU, oder geht es auch mit == keinplan, 5 clicks auf dm button
+        toggleButtonPink.style.display = 'inline-block';
+        message.textContent = 'YEAH!!!!!!! SPECIAL MODE UNLOCKED';
+        message.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
